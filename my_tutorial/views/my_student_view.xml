@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="student_tree_view" model="ir.ui.view">
+        <field name="name">student.tree.view</field>
+        <field name="model">my.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="address"/>
+                <field name="school_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="student_form_view" model="ir.ui.view">
+        <field name="name">student.tree.view</field>
+        <field name="model">my.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="age"/>
+                        <field name="address"/>
+                        <field name="school_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_my_student" model="ir.actions.act_window">
+        <field name="name">My Student Form View</field>
+        <field name="res_model">my.student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <!--        <field name="view_id" ref="my_tutorial_tree_view"/>-->
+    </record>
+
+<!--    <menuitem id="my_student_menu_root" name="My Student"/>-->
+<!--    <menuitem id="student_menu_item" name="My Student" parent="student_menu_root" action="action_my_student"/>-->
+
+</odoo>

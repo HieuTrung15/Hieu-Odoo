@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="my_tutorial_tree_view" model="ir.ui.view">
+        <field name="name">My Tutorial Tree View</field>
+        <field name="model">my.tutorial</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="short_name"/>
+                <field name="contact_name"/>
+                <field name="address"/>
+                <field name="desc"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="my_tutorial_form_view" model="ir.ui.view">
+        <field name="name">My Tutorial Form View</field>
+        <field name="model">my.tutorial</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="btn_draft" string="Set to Draft" states="confirm, cancel" class="oe_highlight" type="object"/>
+                    <button name="btn_confirm" string="Confirm" states="draft" class="oe_highlight" type="object"/>
+                    <button name="btn_cancel" string="Cancel" states="confirm" class="oe_highlight" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="short_name"/>
+                            <field name="contact_name"/>
+                        </group>
+
+                        <group>
+                            <field name="address"/>
+                            <field name="desc"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_my_tutorial" model="ir.actions.act_window">
+        <field name="name">My Tutorial Form View</field>
+        <field name="res_model">my.tutorial</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <!--        <field name="view_id" ref="my_tutorial_tree_view"/>-->
+    </record>
+
+<!--    <menuitem id="my_tutorial_menu_root" name="My Tutorial"/>-->
+<!--    <menuitem id="my_tutorial_menu_item" name="My Tutorial" parent="my_tutorial_menu_root" action="action_my_tutorial"/>-->
+
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<odoo>
+    <data noupdate="0">
+        <record id="voucher_code" model="product.product">
+            <field name="name">Voucher Code</field>
+            <field name="type">service</field>
+        </record>
+    </data>
+</odoo>

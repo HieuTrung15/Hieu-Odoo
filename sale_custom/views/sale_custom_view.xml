@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_order_form">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_untaxed']" position="before">
+                <field name="un_disc" readonly="1"/>
+                <field name="disc" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

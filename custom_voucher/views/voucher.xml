@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<odoo>
+    <record id="voucher_form_view" model="ir.ui.view">
+        <field name="name">voucher.form</field>
+        <field name="model">voucher</field>
+        <field name="arch" type="xml">
+            <form string="Vouchers">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="new,used,expired"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="reward"/>
+                        <field name="partner_id"/>
+                        <field name="voucher_program_id"/>
+                        <field name="expiration_date"/>
+                        <field name="sale_order_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+
+    <record id="voucher_tree_view" model="ir.ui.view">
+        <field name="name">voucher.tree</field>
+        <field name="model">voucher</field>
+        <field name="arch" type="xml">
+            <tree string="Vouchers">
+                <field name="code"/>
+                <field name="reward"/>
+                <field name="partner_id"/>
+                <field name="voucher_program_id"/>
+                <field name="expiration_date"/>
+                <field name="state"/>
+                <field name="sale_order_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_voucher" model="ir.actions.act_window">
+        <field name="name">Voucher</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">voucher</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="voucher_list" name="Voucher" parent="voucher_root" action="action_voucher"/>
+
+
+</odoo>

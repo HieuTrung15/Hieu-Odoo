@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_voucher_program,access_voucher_program,model_voucher_program,,1,1,1,1
+access_voucher_rule,access_voucher_rule,model_voucher_rule,,1,1,1,1
+access_voucher_report,access_voucher_report,model_voucher_report,,1,1,1,1
+access_voucher,access_voucher,model_voucher,,1,1,1,1

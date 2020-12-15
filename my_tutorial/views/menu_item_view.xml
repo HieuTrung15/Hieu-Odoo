@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_school_root" name="School" sequence="1" />
+
+    <menuitem id="menu_school_view" name="School" parent="menu_school_root" action="action_my_tutorial" />
+    <menuitem id="menu_student_view" name="Student" parent="menu_school_root" action="action_my_student" />
+</odoo>

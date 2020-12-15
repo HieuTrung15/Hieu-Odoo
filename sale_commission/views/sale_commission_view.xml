@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_commission_tree_view" model="ir.ui.view">
+        <field name="name">Sale Commission Tree View</field>
+        <field name="model">sale.commission</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type_of_commission"/>
+                <field name="base_money"/>
+                <field name="status_invoice"/>
+                <field name="section_money_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_commission_form_view" model="ir.ui.view">
+        <field name="name">Sale Commission Form View</field>
+        <field name="model">sale.commission</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type_of_commission"/>
+                            <field name="base_money"/>
+                        </group>
+                        <group>
+                            <field name="status_invoice"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field attrs="{'invisible':[('type_of_commission', '!=', 'permanent')]}"
+                                   name="percent_permanent"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="section_money_ids" attrs="{'invisible':[('type_of_commission', '!=', 'section')]}"
+                               nolable="1">
+                            <tree editable="bottom">
+                                <field name="from_money" widget="monetary"/>
+                                <field name="to_money" widget="monetary"/>
+                                <field name="percentage"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_commission" model="ir.actions.act_window">
+        <field name="name">Sale Commission Form View</field>
+        <field name="res_model">sale.commission</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <!--        <field name="view_id" ref="my_tutorial_tree_view"/>-->
+    </record>
+
+    <menuitem id="sale_commission_menu_root" name="Sale Commission"/>
+    <menuitem id="sale_commission_menu_item" name="Sale Commission" parent="sale_commission_menu_root"
+              action="action_sale_commission"/>
+</odoo>

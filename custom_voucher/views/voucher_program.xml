@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="voucher_program_form_view" model="ir.ui.view">
+        <field name="name">voucher.program.form.view</field>
+        <field name="model">voucher.program</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Confirm" class="btn-primary" type="object" name="action_confirm"
+                            attrs="{'invisible': [('state', 'in', ('confirm', 'done'))]}"/>
+                    <button string="Done" class="btn-primary" type="object" name="action_done"
+                            attrs="{'invisible': [('state', 'in', ('done', 'draft'))]}"/>
+                    <button string="Draft" class="btn-primary" type="object" name="action_cancel"
+                            attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_tag_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="validity_duration"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="voucher_rule_ids">
+                            <tree editable="bottom">
+                                <field name="amount_from" widget="monetary"/>
+                                <field name="amount_to" widget="monetary"/>
+                                <field name="discount_percentage"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <notebook>
+                        <page string="Report">
+                            <header>
+                                <button string="View Report" class="btn-primary" type="object"
+                                        name="action_view_report"
+                                        attrs="{'invisible': [('state', 'in', ('confirm', 'done'))]}"/>
+                            </header>
+                            <group>
+                                <field name="voucher_report_ids" readonly="1">
+                                    <tree>
+                                        <field name="partner_id"/>
+                                        <field name="order_ids" widget="many2many_tags"/>
+                                        <field name="sales_achieved"/>
+                                        <field name="reward" widget="monetary"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Voucher">
+                            <header>
+                                <button string="Create Voucher" class="btn-primary" type="object"
+                                        name="action_create_voucher"
+                                        attrs="{'invisible': [('state', 'in', ('done', 'draft'))]}"/>
+                            </header>
+                            <group>
+                                <field name="voucher_ids">
+                                    <tree editable="bottom">
+                                        <field name="partner_id"/>
+                                        <field name="reward" widget="monetary"/>
+                                        <field name="code"/>
+                                        <field name="expiration_date"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="voucher_program_tree_view" model="ir.ui.view">
+        <field name="name">voucher.program.tree.view</field>
+        <field name="model">voucher.program</field>
+        <field name="arch" type="xml">
+            <tree string="Program">
+                <field name="name"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="partner_tag_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="voucher_program" model="ir.actions.act_window">
+        <field name="name">Program</field>
+        <field name="res_model">voucher.program</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your First Program Voucher !
+            </p>
+        </field>
+    </record>
+    <menuitem id="voucher_root" name="Voucher"/>
+    <menuitem id="voucher" name="Program" parent="voucher_root" action="voucher_program"/>
+</odoo>

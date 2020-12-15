@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<odoo>
+    <record id="wizard_custom_voucher_view" model="ir.ui.view">
+        <field name="name">wizard_apply_voucher</field>
+        <field name="model">apply.voucher</field>
+        <field name="arch" type="xml">
+            <form string="Apply Voucher">
+                <group>
+                    <group>
+                        <field name="voucher_code"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="apply_voucher" string="Apply" type="object" class="oe_highlight"/>
+                    or
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_voucher_apply_code_action" model="ir.actions.act_window">
+        <field name="name">Enter Promotion or Voucher Code</field>
+        <field name="res_model">apply.voucher</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="wizard_custom_voucher_view"/>
+    </record>
+
+</odoo>

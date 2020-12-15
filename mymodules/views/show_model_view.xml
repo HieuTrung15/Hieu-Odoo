@@ -1,0 +1,43 @@
+<odoo>
+    <record id="show_model_tree_view" model="ir.ui.view" >
+            <field name="name">ShowModel Tree View</field>
+            <field name="model">show.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="name_upper"/>
+                    <field name="age" />
+                    <field name="gender" />
+                    <field name="date_of_birth" />
+                    <field name="address" />
+                </tree>
+            </field>
+    </record>
+    <record id="action_showmodel" model="ir.actions.act_window">
+            <field name="name">Action in ShowModel</field>
+            <field name="res_model">show.model</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_id" ref="show_model_tree_view"></field>
+    </record>
+    <menuitem
+            id="show_model_menu_item_root"
+            name="ShowModelParent"
+            sequence="75"
+    />
+    <menuitem
+            id="show_model_module_item"
+            name="ShowModelSonny"
+            parent="show_model_menu_item_root"
+            sequence="90"
+            action="action_showmodel"
+    />
+<!--    nhan menuitem duoi cung, upgrade de cap nhat module -->
+<!--    <menuitem-->
+<!--        id="show_model_module_item"-->
+<!--        name="TheSecondModel"-->
+<!--        parent="show_model_menu_item_root"-->
+<!--        sequence="75"-->
+<!--        action="action_showmodel"-->
+<!--    />-->
+</odoo>

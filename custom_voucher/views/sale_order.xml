@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<odoo>
+    <record id="voucher_custom_sale_order_view_form" model="ir.ui.view">
+        <field name="name">sale_order_form_inherit_voucher</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_customer" invisible="1"/>
+            </xpath>
+            <xpath expr="//group[@name='note_group']" position="before">
+                <div class="oe_right">
+                    <button name="%(sale_voucher_apply_code_action)d" class="btn btn-secondary"
+                            string="Pick Voucher" type="action"
+                            attrs="{'invisible':['|', ('is_customer','=',False), ('state', 'not in', ['draft','sent','sale'])]}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="voucher_custom_sale_order_action" model="ir.actions.act_window">
+        <field name="name">Sales Order</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="sale.view_order_tree"/>
+        <field name="domain">[('state', '!=', 'cancel')]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>
